@@ -1,5 +1,7 @@
 export default{
     white:'#fff',
     PRIMARY:'#0165fc',
-    LIGHT_GRAY:'#e6e8eb'
+    SECONDARY:'#dbeafe',
+    LIGHT_GRAY:'#e6e8eb',
+    GRAY:'#a6a4a4'
 }
