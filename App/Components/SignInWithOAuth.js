@@ -1,8 +1,9 @@
 import React from "react";
 import * as WebBrowser from "expo-web-browser";
-import { Button } from "react-native";
+import { Button, Dimensions, Text, TouchableOpacity } from "react-native";
 import { useOAuth } from "@clerk/clerk-expo";
 import { useWarmUpBrowser } from "../../hooks/warmUpBrowser";
+import Colors from "../../assets/Shared/Colors";
 
 WebBrowser.maybeCompleteAuthSession();
  
@@ -30,7 +31,7 @@ const SignInWithOAuth = () => {
  
   return (
     <TouchableOpacity 
-    onPress={()=>console.log("Clicked")}
+    onPress={onPress}
     style={{padding:16,
     backgroundColor:Colors.PRIMARY,
     borderRadius:90,

@@ -1,45 +1,47 @@
 import { View, Text, ActivityIndicator } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import { useRoute } from '@react-navigation/native'
-import PageHeader from '../Components/Shared/PageHeader';
-import HospitalDoctorTab from '../Components/HospitalDoctorsScreen./HospitalDoctorTab';
+import PageHeader from '../Components/Shared/PageHeader'
+import HospitalDoctorTab from '../Components/HospitalDoctorsScreen./HospitalDoctorTab'
 import HospitalListBig from '../Components/HospitalDoctorsScreen./HospitalListBig';
+import DoctorList from '../Components/HospitalDoctorsScreen./DoctorList';
 import GlobalApi from '../Services/GlobalApi';
 import Colors from '../../assets/Shared/Colors';
-import DoctorList from '../Components/HospitalDoctorsScreen./DoctorList';
 
-export default function HospitalDoctorsListScreen() {
+export default function Explores() {
 
-  const [hospitalList,setHospitalList]=useState([]);
+    const [hospitalList,setHospitalList]=useState([]);
   const [doctorsList,setDoctorsList]=useState([]);
 
-  const param=useRoute().params;
+
   const [activeTab,setActiveTab]=useState('Hospital');
 
   useEffect(()=>{
     activeTab=='Hospital'?
-    getHospitalsByCategory()
-    :getDoctorsByCategory();
+    getAllHospital()
+    :getAllDoctors();
   },[activeTab])
 
-  const getHospitalsByCategory=()=>{
-    GlobalApi.getHospitalsByCategory(param?.categoryName).then(resp=>{
+  const getAllHospital=()=>{
+    GlobalApi.getAllHospital().then(resp=>{
       setHospitalList(resp.data.data);
     })
   }
-  const getDoctorsByCategory=()=>{
-    GlobalApi.getDoctorsByCategory(param?.categoryName).then(resp=>{
+  const getAllDoctors=()=>{
+    GlobalApi.getAllDoctors().then(resp=>{
       setDoctorsList(resp.data.data);
     })
   }
   return (
     <View style={{padding:20}}>
-     
-      <PageHeader title={param?.categoryName}/>
+        <Text style={{
+            fontSize:26,
+            fontFamily:'appfont-semi'
+        }}>Explore</Text>
 
-      <HospitalDoctorTab activeTab={(value)=>setActiveTab(value)} />
-       
-      {!hospitalList?.length
+      <HospitalDoctorTab  
+      activeTab={(value)=>setActiveTab(value)} />
+        
+        {!hospitalList?.length
       ?<ActivityIndicator size={'large'} 
       color={Colors.PRIMARY}
       style={{marginTop:'50%'}} />
@@ -48,9 +50,6 @@ export default function HospitalDoctorsListScreen() {
       <HospitalListBig hospitalList={hospitalList} />
       :<DoctorList doctorsList={doctorsList} />
       }
-      
-     
-
     </View>
   )
 }

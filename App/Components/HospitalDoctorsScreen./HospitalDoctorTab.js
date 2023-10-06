@@ -1,9 +1,9 @@
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet,TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
-import { TouchableOpacity } from 'react-native-gesture-handler'
+
 import Colors from '../../../assets/Shared/Colors'
 
-export default function HospitalDoctorTab() {
+export default function HospitalDoctorTab({activeTab}) {
     const [activeIndex,setActiveIndex]=useState(0)
   return (
     <View style={{marginTop:10}}>
@@ -15,7 +15,7 @@ export default function HospitalDoctorTab() {
                     ?styles.activeTab
                     :styles.inActiveTab
                 ]}
-            onPress={()=>setActiveIndex(0)}>
+            onPress={()=>{setActiveIndex(0);activeTab('Hospital')}}>
                 <Text style={[
                     activeIndex==0
                     ?styles.activeText
@@ -28,7 +28,7 @@ export default function HospitalDoctorTab() {
                 ?styles.activeTab
                 :styles.inActiveTab
             ]}
-            onPress={()=>setActiveIndex(1)}>
+            onPress={()=>{setActiveIndex(1);activeTab('Doctor')}}>
                 <Text style={[
                     activeIndex==1
                     ?styles.activeText

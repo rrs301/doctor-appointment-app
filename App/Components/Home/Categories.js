@@ -1,9 +1,8 @@
-import { View, Text, Image, FlatList } from 'react-native'
+import { View,TouchableOpacity, Text, Image, FlatList } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import GlobalApi from '../../Services/GlobalApi'
 import Colors from '../../../assets/Shared/Colors';
 import SubHeading from './SubHeading';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 
 

@@ -22,6 +22,9 @@ export default function Home() {
 
       <Categories/>
 
+      
+      <PremiumHospitals/>
+      
       <PremiumHospitals/>
 
       {/* <PremiumHospitals/> */}
